@@ -113,7 +113,6 @@ function App() {
           justifyContent: "center",
           flex: 1,
           width: "100%",
-          padding: "20px",
         }}
       >
         <div
