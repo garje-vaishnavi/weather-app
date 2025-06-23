@@ -264,7 +264,7 @@ function App() {
               fontSize: "1.2rem",
             }}
           >
-            Garje Vaishnavi
+             Vaishnavi Garje
           </span>
         </div>
       </div>
