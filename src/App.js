@@ -92,130 +92,184 @@ function App() {
   return (
     <div
       style={{
-        ...styles.container,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        minHeight: "100vh",
+        fontFamily: "'Arial', sans-serif",
         backgroundImage: `url('${isDayTime() ? bgImageDay : bgImageNight}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        width: "100%",
+        position: "relative",
       }}
     >
-      {/* Only changed the clock styling - kept all your exact functionality */}
-      <div style={styles.clock}>{currentTime.toLocaleTimeString()}</div>
-
-      <h1 style={styles.title}>Weather App</h1>
-      <div style={styles.searchContainer}>
-        <input
-          style={{
-            ...styles.input,
-            border: error ? "2px solid red" : "none",
-            color: error ? "red" : "black",
-          }}
-          type="text"
-          value={error ? error : cityName}
-          onChange={(e) => {
-            setCityName(e.target.value);
-            setError("");
-          }}
-          onFocus={() => {
-            if (error) {
-              setError(null);
-              setCityName("");
-            }
-          }}
-          placeholder="Enter City Name"
-        />
-        <button onClick={getWeather} style={styles.button}>
-          Search
-        </button>
-        <button onClick={getLocationWeather} style={styles.button}>
-          Use My Location
-        </button>
-      </div>
-
-      {isLoading && (
-        <p style={{ color: "white", fontSize: "1.2rem", marginTop: "20px" }}>
-          Loading...
-        </p>
-      )}
-
-      {weather && weather.main && !isLoading && (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+          width: "100%",
+          padding: "20px",
+        }}
+      >
         <div
           style={{
-            marginTop: "20px",
-            padding: "20px",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            borderRadius: "8px",
-            textAlign: "center",
+            color: "white",
+            fontSize: "2rem",
+            fontWeight: "bold",
+            textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+            margin: "20px 0",
+            padding: "15px 25px",
+            backgroundColor: "rgba(0,0,0,0.2)",
+            borderRadius: "10px",
+            border: "2px solid rgba(255,255,255,0.3)",
           }}
         >
-          <h2>{weather.name}</h2>
-          <p>{weather.weather[0].description}</p>
-          <p>Temperature: {weather.main.temp} °C</p>
-          <p>Humidity: {weather.main.humidity}%</p>
-          <p>Wind: {weather.wind.speed} m/s</p>
+          {currentTime.toLocaleTimeString()}
         </div>
-      )}
+
+        <h1
+          style={{
+            color: "white",
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+            marginBottom: "30px",
+            fontSize: "2.5rem",
+          }}
+        >
+          Weather App
+        </h1>
+
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            maxWidth: "500px",
+            flexWrap: "wrap",
+            gap: "10px",
+            justifyContent: "center",
+          }}
+        >
+          <input
+            style={{
+              flex: 1,
+              padding: "12px 15px",
+              fontSize: "1rem",
+              border: error ? "2px solid red" : "none",
+              color: error ? "red" : "black",
+              borderRadius: "4px",
+              outline: "none",
+              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+            }}
+            type="text"
+            value={error ? error : cityName}
+            onChange={(e) => {
+              setCityName(e.target.value);
+              setError("");
+            }}
+            onFocus={() => {
+              if (error) {
+                setError(null);
+                setCityName("");
+              }
+            }}
+            placeholder="Enter City Name"
+          />
+          <button
+            onClick={getWeather}
+            style={{
+              padding: "12px 20px",
+              fontSize: "1rem",
+              backgroundColor: "#FF8C00",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              transition: "background-color 0.3s",
+              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            Search
+          </button>
+          <button
+            onClick={getLocationWeather}
+            style={{
+              padding: "12px 20px",
+              fontSize: "1rem",
+              backgroundColor: "#FF8C00",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              transition: "background-color 0.3s",
+              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            Use My Location
+          </button>
+        </div>
+
+        {isLoading && (
+          <p style={{ color: "white", fontSize: "1.2rem", marginTop: "20px" }}>
+            Loading...
+          </p>
+        )}
+
+        {weather && weather.main && !isLoading && (
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "20px",
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              borderRadius: "8px",
+              textAlign: "center",
+            }}
+          >
+            <h2>{weather.name}</h2>
+            <p>{weather.weather[0].description}</p>
+            <p>Temperature: {weather.main.temp} °C</p>
+            <p>Humidity: {weather.main.humidity}%</p>
+            <p>Wind: {weather.wind.speed} m/s</p>
+          </div>
+        )}
+      </div>
+
+      <div
+        style={{
+          width: "100%",
+          padding: "15px 0",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          textAlign: "center",
+          backdropFilter: "blur(5px)",
+        }}
+      >
+        <div
+          style={{
+            color: "white",
+            fontSize: "1.1rem",
+            fontWeight: "bold",
+            letterSpacing: "0.5px",
+          }}
+        >
+          Developed with ❤️ by{" "}
+          <span
+            style={{
+              color: "#FF8C00",
+              textShadow: "0 0 5px rgba(255,140,0,0.5)",
+              fontSize: "1.2rem",
+            }}
+          >
+            Garje Vaishnavi
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100vh",
-    fontFamily: "'Arial', sans-serif",
-
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: "100%",
-  },
-  // Only changed the clock styling - kept all your other styles exactly the same
-  clock: {
-    color: "white",
-    fontSize: "2rem",
-    fontWeight: "bold",
-    textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
-    margin: "20px 0",
-    padding: "15px 25px",
-    backgroundColor: "rgba(0,0,0,0.2)",
-    borderRadius: "10px",
-    border: "2px solid rgba(255,255,255,0.3)",
-  },
-  title: {
-    color: "white",
-    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
-    marginBottom: "30px",
-    fontSize: "2.5rem",
-  },
-  searchContainer: {
-    display: "flex",
-    width: "100%",
-    maxWidth: "500px",
-    flexWrap: "wrap",
-    gap: "10px",
-    justifyContent: "center",
-  },
-  input: {
-    flex: 1,
-    padding: "12px 15px",
-    fontSize: "1rem",
-    border: "none",
-    borderRadius: "4px",
-    outline: "none",
-    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-  },
-  button: {
-    padding: "12px 20px",
-    fontSize: "1rem",
-    backgroundColor: "#FF8C00",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    transition: "background-color 0.3s",
-    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-  },
-};
 
 export default App;
