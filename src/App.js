@@ -250,7 +250,7 @@ function App() {
         <div
           style={{
             color: "white",
-            fontSize: "1.1rem",
+            fontSize: "1rem",
             fontWeight: "bold",
             letterSpacing: "0.5px",
           }}
@@ -260,7 +260,7 @@ function App() {
             style={{
               color: "#FF8C00",
               textShadow: "0 0 5px rgba(255,140,0,0.5)",
-              fontSize: "0.5rem",
+           
             }}
           >
              Vaishnavi Garje
