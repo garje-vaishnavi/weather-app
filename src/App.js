@@ -245,6 +245,10 @@ function App() {
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           textAlign: "center",
           backdropFilter: "blur(5px)",
+          position: "fixed",
+          bottom: 0,
+          left:0,
+          right:0
         }}
       >
         <div
